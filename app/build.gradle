@@ -19,7 +19,7 @@ android {
         }
     }
     lintOptions {
-        warning 'InvalidPackage'
+        lintConfig rootProject.file('gradle/lint.xml')
     }
 }
 
