@@ -1,0 +1,20 @@
+# Mobile Software Laboratory - 2016
+#
+# © Szokol Szabolcs István (CVL3GJ)
+swagger: '2.0'
+info:
+  title: CountryInfo API
+  description: API description for CountryInfo application 
+  version: "0.1.0"
+host: example.country.hu
+schemes:
+  - http
+basePath: /api
+produces:
+  - application/json
+paths:
+  /:
+    get:
+      responses:
+        200:
+          description: OK
