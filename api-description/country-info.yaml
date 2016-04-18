@@ -5,16 +5,93 @@ swagger: '2.0'
 info:
   title: CountryInfo API
   description: API description for CountryInfo application 
-  version: "0.1.0"
+  version: "0.1.1"
 host: example.country.hu
 schemes:
   - http
 basePath: /api
 produces:
   - application/json
+consumes:
+  - application/json
 paths:
-  /:
-    get:
+  /register:
+    post:
+      summary: Registartion
+      description: |
+        Provides registration facility to the application.
+      tags:
+        - Auth
+      parameters:
+        - in: body
+          name: body
+          description: Login credentials of the user
+          required: true
+          schema:
+            $ref: "#/definitions/Credential"
+      responses:
+        201:
+          description: Indicates successful registration
+          schema:
+            $ref: '#/definitions/Credential'
+        403:
+          description: User already registered
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+  /login:
+    post:
+      summary: Login
+      description: |
+        Provides Login function to the application.
+      tags:
+        - Auth
+      parameters:
+        - in: body
+          name: body
+          description: Login credentials of the user
+          required: true
+          schema:
+            $ref: "#/definitions/Credential"
       responses:
         200:
-          description: OK
+          description: Indicates successful Log In
+          schema:
+            $ref: '#/definitions/AccessToken'
+        401:
+          description: Invalid login crednatials
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Credential:
+    type: object
+    required:
+      - name
+      - password
+    properties:
+      name:
+        type: string
+      password:
+        type: string
+  AccessToken:
+    type: object
+    required:
+      - access_token
+    properties:
+      access_token:
+        type: string
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
