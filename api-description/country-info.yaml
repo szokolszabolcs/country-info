@@ -5,7 +5,7 @@ swagger: '2.0'
 info:
   title: CountryInfo API
   description: API description for CountryInfo application 
-  version: "0.1.1"
+  version: "0.1.2"
 host: example.country.hu
 schemes:
   - http
@@ -69,6 +69,186 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/Error'
+  /logout:
+    post:
+      summary: Logout
+      description: |
+        Provide log out facility, the acces token is invalidated.
+      tags:
+        - Auth
+      parameters:
+        - in: header
+          name: access_token
+          description: The acces token what is provided after a successful login
+          required: true
+          type: string
+      responses:
+        204:
+          description: Indicates successful Log Out
+        401:
+          description: The provided access token in the header is invalid
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+  /all:
+    get:
+      summary: Get all countries
+      description: |
+        All countries can be retrieved with this endpoint.
+      tags:
+        - Countries
+      parameters:
+        - in: header
+          name: access_token
+          description: The acces token what is provided after a successful login
+          required: true
+          type: string
+      responses:
+        200:
+          description: The request was successful, all countries provieded
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Country'
+        401:
+          description: The provided access token in the header is invalid
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+  /name:
+    get:
+      summary: Search for countrie name
+      description: |
+        Countries can be searched by the name substring.
+      tags:
+        - Countries
+      parameters:
+        - in: header
+          name: access_token
+          description: The acces token what is provided after a successful login
+          required: true
+          type: string
+        - in: query
+          name: nameSubstring
+          description: Country name substring
+          required: true
+          type: string
+      responses:
+        200:
+          description: The request was successful, search result provided
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Country'
+        401:
+          description: The provided access token in the header is invalid
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+  /favourites:
+    get:
+      summary: Get all favourites
+      description: |
+        All favourite countries will be provided for the current user.
+      tags:
+        - Countries
+        - Favourites
+      parameters:
+        - in: header
+          name: access_token
+          description: The acces token what is provided after a successful login
+          required: true
+          type: string
+      responses:
+        200:
+          description: The request was successful, favourites provided
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Country'
+        401:
+          description: The provided access token in the header is invalid
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Add a new favourite
+      description: |
+        The country with the provided id will be added to favourites
+      tags:
+        - Countries
+        - Favourites
+      parameters:
+        - in: header
+          name: access_token
+          description: The acces token what is provided after a successful login
+          required: true
+          type: string
+        - in: query
+          name: id
+          description: Country ID what should be added to favourites
+          required: true
+          type: string
+      responses:
+        204:
+          description: The request was successful, coutry added to favourites
+        401:
+          description: The provided access token in the header is invalid
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: Not a valid country ID
+          schema:
+            $ref: '#/definitions/Error'    
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete a favourite
+      description: |
+        The country with the provided ID will be deleted from the user's favourites
+      tags:
+        - Countries
+        - Favourites
+      parameters:
+        - in: header
+          name: access_token
+          description: The acces token what is provided after a successful login
+          required: true
+          type: string
+        - in: query
+          name: id
+          description: Country ID what sould be deleted from favourites
+          required: true
+          type: string
+      responses:
+        204:
+          description: The request was successful, coutry was removed form favourites
+        401:
+          description: The provided access token in the header is invalid
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: The country ID was not in the user's favourites.
+          schema:
+            $ref: '#/definitions/Error'    
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
 definitions:
   Credential:
     type: object
@@ -89,9 +269,42 @@ definitions:
         type: string
   Error:
     type: object
+    required:
+      - code
     properties:
       code:
         type: integer
         format: int32
       message:
+        type: string
+  Country:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      region:
+        type: string
+      population:
+        type: integer
+        format: int64
+      area:
+        type: integer
+        format: int32
+      currencies:
+        type: array
+        items:
+          type: string
+      callingCodes:
+        type: array
+        items:
+          type: string
+      topLevelDomain:
+        type: array
+        items:
+          type: string
+      smallImageUrl:
+        type: string
+      normalImageUrl:
         type: string
