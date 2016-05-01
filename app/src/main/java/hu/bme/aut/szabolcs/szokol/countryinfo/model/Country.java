@@ -2,15 +2,17 @@ package hu.bme.aut.szabolcs.szokol.countryinfo.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.orm.dsl.Table;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Table
 public class Country {
 
     @SerializedName("id")
     @Expose
-    private String id;
+    private Long id;
     @SerializedName("name")
     @Expose
     private String name;
@@ -19,7 +21,7 @@ public class Country {
     private String region;
     @SerializedName("population")
     @Expose
-    private Integer population;
+    private Long population;
     @SerializedName("area")
     @Expose
     private Integer area;
@@ -39,17 +41,44 @@ public class Country {
     @Expose
     private String normalImageUrl;
 
+    public Country() {
+    }
+
+    public Country(Long id,
+                   String name,
+                   String region,
+                   Long population,
+                   Integer area,
+                   List<String> currencies,
+                   List<String> callingCodes,
+                   List<String> topLevelDomain,
+                   String smallImageUrl,
+                   String normalImageUrl) {
+
+        this.id = id;
+        this.name = name;
+        this.region = region;
+        this.population = population;
+        this.area = area;
+        this.currencies = currencies;
+        this.callingCodes = callingCodes;
+        this.topLevelDomain = topLevelDomain;
+        this.smallImageUrl = smallImageUrl;
+        this.normalImageUrl = normalImageUrl;
+
+    }
+
     /**
      * @return The id
      */
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
     /**
      * @param id The id
      */
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -84,14 +113,14 @@ public class Country {
     /**
      * @return The population
      */
-    public Integer getPopulation() {
+    public Long getPopulation() {
         return population;
     }
 
     /**
      * @param population The population
      */
-    public void setPopulation(Integer population) {
+    public void setPopulation(Long population) {
         this.population = population;
     }
 
