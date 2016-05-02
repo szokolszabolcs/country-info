@@ -16,6 +16,9 @@ public class Country {
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("capital")
+    @Expose
+    private String capital;
     @SerializedName("region")
     @Expose
     private String region;
@@ -46,6 +49,7 @@ public class Country {
 
     public Country(Long id,
                    String name,
+                   String capital,
                    String region,
                    Long population,
                    Integer area,
@@ -57,6 +61,7 @@ public class Country {
 
         this.id = id;
         this.name = name;
+        this.capital = capital;
         this.region = region;
         this.population = population;
         this.area = area;
@@ -94,6 +99,20 @@ public class Country {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * @return The capital
+     */
+    public String getCapital() {
+        return capital;
+    }
+
+    /**
+     * @param capital The capital
+     */
+    public void setCapital(String capital) {
+        this.capital = capital;
     }
 
     /**

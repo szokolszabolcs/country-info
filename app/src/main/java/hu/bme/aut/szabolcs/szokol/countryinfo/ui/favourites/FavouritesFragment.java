@@ -88,7 +88,7 @@ public class FavouritesFragment extends Fragment implements FavouritesScreen {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button:
-                Country country = new Country(random.nextLong(), "Test Country", "Test region", 546464L, 8464, MockRepository.getList("RAND"), MockRepository.getList("100"), MockRepository.getList(".rand"), "http://small.hu", "http://normal.hu");
+                Country country = new Country(random.nextLong(), "Test Country", "Test Capital", "Test region", 546464L, 8464, MockRepository.getList("RAND"), MockRepository.getList("100"), MockRepository.getList(".rand"), "http://small.hu", "http://normal.hu");
                 presenter.addToDB(country);
                 break;
         }
