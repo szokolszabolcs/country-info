@@ -12,4 +12,10 @@
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
 
+
+    <string name="title_search">Search</string>
+    <string name="title_favourites">Favourites</string>
+    <string name="title_all_cointries">All countries</string>
+    <string name="title_log_out">Log out</string>
+
 </resources>
