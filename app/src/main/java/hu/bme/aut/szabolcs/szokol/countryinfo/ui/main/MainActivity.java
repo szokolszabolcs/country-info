@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 import hu.bme.aut.szabolcs.szokol.countryinfo.CountyInfoApplication;
 import hu.bme.aut.szabolcs.szokol.countryinfo.R;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.allcountries.AllCountriesFragment;
+import hu.bme.aut.szabolcs.szokol.countryinfo.ui.favourites.FavouritesFragment;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.search.SearchFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -94,7 +95,12 @@ public class MainActivity extends AppCompatActivity
             fm.beginTransaction().replace(R.id.container, fragment)
                     .addToBackStack(SearchFragment.FRAGMENT_SEARCH).commit();
         } else if (id == R.id.nav_favourites) {
-
+            fragment = fm.findFragmentByTag(FavouritesFragment.FRAGMENT_FAVOURITES);
+            if (fragment == null) {
+                fragment = new FavouritesFragment();
+            }
+            fm.beginTransaction().replace(R.id.container, fragment)
+                    .addToBackStack(FavouritesFragment.FRAGMENT_FAVOURITES).commit();
         } else if (id == R.id.nav_all_countries) {
             fragment = fm.findFragmentByTag(AllCountriesFragment.FRAGMENT_ALL_COUNTRIES);
             if (fragment == null) {
