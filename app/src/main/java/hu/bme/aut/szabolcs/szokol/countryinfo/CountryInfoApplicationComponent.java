@@ -13,6 +13,7 @@ import hu.bme.aut.szabolcs.szokol.countryinfo.ui.UiModule;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.allcountries.AllCountriesFragment;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.login.LoginActivity;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.main.MainActivity;
+import hu.bme.aut.szabolcs.szokol.countryinfo.ui.search.SearchFragment;
 
 @Singleton
 @Component(modules = {UiModule.class, NetworkModule.class, RepositoryModule.class, InteractorModule.class})
@@ -29,5 +30,7 @@ public interface CountryInfoApplicationComponent {
     void inject(FavouritesInteractor favouritesInteractor);
 
     void inject(AllCountriesFragment allCountriesFragment);
+
+    void inject(SearchFragment searchFragment);
 
 }

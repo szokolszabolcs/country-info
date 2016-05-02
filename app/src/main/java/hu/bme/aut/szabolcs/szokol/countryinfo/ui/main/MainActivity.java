@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 import hu.bme.aut.szabolcs.szokol.countryinfo.CountyInfoApplication;
 import hu.bme.aut.szabolcs.szokol.countryinfo.R;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.allcountries.AllCountriesFragment;
+import hu.bme.aut.szabolcs.szokol.countryinfo.ui.search.SearchFragment;
 
 public class MainActivity extends AppCompatActivity
         implements MainScreen, NavigationView.OnNavigationItemSelectedListener {
@@ -86,7 +87,12 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_search) {
-
+            fragment = fm.findFragmentByTag(SearchFragment.FRAGMENT_SEARCH);
+            if (fragment == null) {
+                fragment = new SearchFragment();
+            }
+            fm.beginTransaction().replace(R.id.container, fragment)
+                    .addToBackStack(SearchFragment.FRAGMENT_SEARCH).commit();
         } else if (id == R.id.nav_favourites) {
 
         } else if (id == R.id.nav_all_countries) {

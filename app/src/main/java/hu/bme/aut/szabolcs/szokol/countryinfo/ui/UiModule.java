@@ -14,6 +14,7 @@ import hu.bme.aut.szabolcs.szokol.countryinfo.di.Network;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.allcountries.AllCountriesPresenter;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.login.LoginPresenter;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.main.MainPresenter;
+import hu.bme.aut.szabolcs.szokol.countryinfo.ui.search.SearchPresenter;
 
 @Module
 public class UiModule {
@@ -45,6 +46,12 @@ public class UiModule {
     @Singleton
     public AllCountriesPresenter providesAllCountriesPresenter() {
         return new AllCountriesPresenter();
+    }
+
+    @Provides
+    @Singleton
+    public SearchPresenter providesSearchPresenter() {
+        return new SearchPresenter();
     }
 
     @Provides
