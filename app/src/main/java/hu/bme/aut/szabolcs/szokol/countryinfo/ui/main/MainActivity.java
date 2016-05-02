@@ -2,6 +2,8 @@ package hu.bme.aut.szabolcs.szokol.countryinfo.ui.main;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,9 +18,10 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import hu.bme.aut.szabolcs.szokol.countryinfo.CountyInfoApplication;
 import hu.bme.aut.szabolcs.szokol.countryinfo.R;
+import hu.bme.aut.szabolcs.szokol.countryinfo.ui.allcountries.AllCountriesFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements MainScreen, NavigationView.OnNavigationItemSelectedListener {
 
     @Inject
     MainPresenter mainPresenter;
@@ -54,6 +57,18 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        mainPresenter.attachScreen(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mainPresenter.detachScreen();
+    }
+
+    @Override
     public void onBackPressed() {
         if ((drawerLayout != null) && (drawerLayout.isDrawerOpen(GravityCompat.START))) {
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -65,6 +80,8 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = null;
 
         int id = item.getItemId();
 
@@ -73,7 +90,12 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_favourites) {
 
         } else if (id == R.id.nav_all_countries) {
-
+            fragment = fm.findFragmentByTag(AllCountriesFragment.FRAGMENT_ALL_COUNTRIES);
+            if (fragment == null) {
+                fragment = new AllCountriesFragment();
+            }
+            fm.beginTransaction().replace(R.id.container, fragment)
+                    .addToBackStack(AllCountriesFragment.FRAGMENT_ALL_COUNTRIES).commit();
         } else if (id == R.id.nav_log_out) {
 
         }

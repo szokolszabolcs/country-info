@@ -11,6 +11,7 @@ import dagger.Module;
 import dagger.Provides;
 import hu.bme.aut.szabolcs.szokol.countryinfo.di.Database;
 import hu.bme.aut.szabolcs.szokol.countryinfo.di.Network;
+import hu.bme.aut.szabolcs.szokol.countryinfo.ui.allcountries.AllCountriesPresenter;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.login.LoginPresenter;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.main.MainPresenter;
 
@@ -38,6 +39,12 @@ public class UiModule {
     @Singleton
     public MainPresenter providesMainPresenter() {
         return new MainPresenter();
+    }
+
+    @Provides
+    @Singleton
+    public AllCountriesPresenter providesAllCountriesPresenter() {
+        return new AllCountriesPresenter();
     }
 
     @Provides
