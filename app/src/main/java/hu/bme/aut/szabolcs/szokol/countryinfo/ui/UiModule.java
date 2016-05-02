@@ -12,6 +12,7 @@ import dagger.Provides;
 import hu.bme.aut.szabolcs.szokol.countryinfo.di.Database;
 import hu.bme.aut.szabolcs.szokol.countryinfo.di.Network;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.login.LoginPresenter;
+import hu.bme.aut.szabolcs.szokol.countryinfo.ui.main.MainPresenter;
 
 @Module
 public class UiModule {
@@ -31,6 +32,12 @@ public class UiModule {
     @Singleton
     public LoginPresenter provideLoginPresenter() {
         return new LoginPresenter();
+    }
+
+    @Provides
+    @Singleton
+    public MainPresenter providesMainPresenter() {
+        return new MainPresenter();
     }
 
     @Provides
