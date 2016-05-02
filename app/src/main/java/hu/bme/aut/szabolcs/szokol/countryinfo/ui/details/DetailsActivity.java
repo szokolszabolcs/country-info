@@ -8,13 +8,11 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import hu.bme.aut.szabolcs.szokol.countryinfo.CountyInfoApplication;
 import hu.bme.aut.szabolcs.szokol.countryinfo.R;
-import hu.bme.aut.szabolcs.szokol.countryinfo.ui.main.MainPresenter;
-import hu.bme.aut.szabolcs.szokol.countryinfo.ui.main.MainScreen;
 
-public class DetailsActivity extends AppCompatActivity implements MainScreen {
+public class DetailsActivity extends AppCompatActivity implements DetailsScreen {
 
     @Inject
-    MainPresenter mainPresenter;
+    DetailsPresenter detailsPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +26,13 @@ public class DetailsActivity extends AppCompatActivity implements MainScreen {
     @Override
     protected void onStart() {
         super.onStart();
-        mainPresenter.attachScreen(this);
+        detailsPresenter.attachScreen(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mainPresenter.detachScreen();
+        detailsPresenter.detachScreen();
     }
 
 }

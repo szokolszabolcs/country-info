@@ -1,5 +1,6 @@
 package hu.bme.aut.szabolcs.szokol.countryinfo.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,7 @@ import hu.bme.aut.szabolcs.szokol.countryinfo.CountyInfoApplication;
 import hu.bme.aut.szabolcs.szokol.countryinfo.R;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.allcountries.AllCountriesFragment;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.favourites.FavouritesFragment;
+import hu.bme.aut.szabolcs.szokol.countryinfo.ui.login.LoginActivity;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.search.SearchFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -109,12 +111,19 @@ public class MainActivity extends AppCompatActivity
             fm.beginTransaction().replace(R.id.container, fragment)
                     .addToBackStack(AllCountriesFragment.FRAGMENT_ALL_COUNTRIES).commit();
         } else if (id == R.id.nav_log_out) {
-
+            mainPresenter.logout();
         }
 
         if (drawerLayout != null) {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
         return true;
+    }
+
+    @Override
+    public void navigateToLogIn() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

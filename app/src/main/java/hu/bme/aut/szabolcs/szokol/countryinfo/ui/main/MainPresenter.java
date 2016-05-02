@@ -14,4 +14,8 @@ public class MainPresenter extends Presenter<MainScreen> {
         super.detachScreen();
     }
 
+    public void logout() {
+        screen.navigateToLogIn(); //TODO
+    }
+
 }
