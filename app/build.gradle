@@ -22,10 +22,12 @@ android {
         mock {
             applicationId = "hu.bme.aut.szabolcs.szokol.countryinfo.mock"
             buildConfigField 'boolean', 'MOCK', 'true'
+            resValue "string", "app_name", "Country Info - Mock"
         }
         prod {
             applicationId = "hu.bme.aut.szabolcs.szokol.countryinfo"
             buildConfigField 'boolean', 'MOCK', 'false'
+            resValue "string", "app_name", "Country Info"
         }
     }
     lintOptions {

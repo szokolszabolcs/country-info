@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">Country Info</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -17,5 +15,4 @@
     <string name="title_favourites">Favourites</string>
     <string name="title_all_cointries">All countries</string>
     <string name="title_log_out">Log out</string>
-
 </resources>
