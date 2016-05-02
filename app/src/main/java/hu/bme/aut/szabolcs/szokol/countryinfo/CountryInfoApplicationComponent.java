@@ -22,6 +22,8 @@ import hu.bme.aut.szabolcs.szokol.countryinfo.ui.search.SearchFragment;
 @Component(modules = {UiModule.class, NetworkModule.class, RepositoryModule.class, InteractorModule.class})
 public interface CountryInfoApplicationComponent {
 
+    void inject(CountyInfoApplication countyInfoApplication);
+
     void inject(MainActivity mainActivity);
 
     void inject(LoginActivity loginActivity);

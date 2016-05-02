@@ -1,5 +1,7 @@
 package hu.bme.aut.szabolcs.szokol.countryinfo.repository.prod;
 
+import android.content.Context;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -11,8 +13,10 @@ public class RepositoryModule {
 
     @Provides
     @Singleton
-    public Repository providesProdRepository() {
-        return new ProdRepository();
+    public Repository providesProdRepository(Context context) {
+        ProdRepository prodRepository = new ProdRepository();
+        prodRepository.initialize(context);
+        return prodRepository;
     }
 
 }

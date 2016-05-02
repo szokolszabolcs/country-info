@@ -1,5 +1,7 @@
 package hu.bme.aut.szabolcs.szokol.countryinfo.repository.mock;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,8 @@ public class MockRepository implements Repository {
 
     List<Country> favourites;
 
-    public MockRepository() {
+    @Override
+    public void initialize(Context context) {
         favourites = new ArrayList<>();
 
         favourites.add(new Country(1L, "Andorra", "Europe", 76949L, 468, getList("EUR"), getList("376"), getList(".ad"), "http://flagpedia.net/data/flags/mini/ad.png", "http://flags.fmcdn.net/data/flags/normal/ad.png"));
@@ -18,7 +21,11 @@ public class MockRepository implements Repository {
         favourites.add(new Country(3L, "Finland", "Europe", 5485215L, 338424, getList("EUR"), getList("358"), getList(".fi"), "http://flagpedia.net/data/flags/mini/fi.png", "http://flagpedia.net/data/flags/normal/fi.png"));
         favourites.add(new Country(4L, "Hungary", "Europe", 9849000L, 93028, getList("HUF"), getList("36"), getList(".hu"), "http://flagpedia.net/data/flags/mini/hu.png", "http://flagpedia.net/data/flags/normal/hu.png"));
         favourites.add(new Country(5L, "Russia", "Europe", 146556330L, 17124442, getList("RUB"), getList("7"), getList(".ru"), "http://flagpedia.net/data/flags/mini/ru.png", "http://flagpedia.net/data/flags/normal/ru.png"));
+    }
 
+    @Override
+    public void terminate() {
+        //do nothing
     }
 
     @Override
