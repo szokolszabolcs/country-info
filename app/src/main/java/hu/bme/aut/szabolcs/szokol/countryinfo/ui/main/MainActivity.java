@@ -92,21 +92,21 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_search) {
             fragment = fm.findFragmentByTag(SearchFragment.FRAGMENT_SEARCH);
             if (fragment == null) {
-                fragment = new SearchFragment();
+                fragment = SearchFragment.newInstance();
             }
             fm.beginTransaction().replace(R.id.container, fragment)
                     .addToBackStack(SearchFragment.FRAGMENT_SEARCH).commit();
         } else if (id == R.id.nav_favourites) {
             fragment = fm.findFragmentByTag(FavouritesFragment.FRAGMENT_FAVOURITES);
             if (fragment == null) {
-                fragment = new FavouritesFragment();
+                fragment = FavouritesFragment.newInstance();
             }
             fm.beginTransaction().replace(R.id.container, fragment)
                     .addToBackStack(FavouritesFragment.FRAGMENT_FAVOURITES).commit();
         } else if (id == R.id.nav_all_countries) {
             fragment = fm.findFragmentByTag(AllCountriesFragment.FRAGMENT_ALL_COUNTRIES);
             if (fragment == null) {
-                fragment = new AllCountriesFragment();
+                fragment = AllCountriesFragment.newInstance();
             }
             fm.beginTransaction().replace(R.id.container, fragment)
                     .addToBackStack(AllCountriesFragment.FRAGMENT_ALL_COUNTRIES).commit();

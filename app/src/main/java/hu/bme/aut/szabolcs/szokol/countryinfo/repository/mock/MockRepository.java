@@ -36,7 +36,7 @@ public class MockRepository implements Repository {
         favourites.remove(country);
     }
 
-    private static List<String> getList(String item) {
+    public static List<String> getList(String item) {
         List<String> itemList = new ArrayList<>();
         itemList.add(item);
 
