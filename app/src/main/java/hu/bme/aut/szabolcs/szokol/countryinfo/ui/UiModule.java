@@ -12,6 +12,7 @@ import dagger.Provides;
 import hu.bme.aut.szabolcs.szokol.countryinfo.di.Database;
 import hu.bme.aut.szabolcs.szokol.countryinfo.di.Network;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.allcountries.AllCountriesPresenter;
+import hu.bme.aut.szabolcs.szokol.countryinfo.ui.details.DetailsPresenter;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.favourites.FavouritesPresenter;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.login.LoginPresenter;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.main.MainPresenter;
@@ -59,6 +60,12 @@ public class UiModule {
     @Singleton
     public FavouritesPresenter providesFavouritesPresenter() {
         return new FavouritesPresenter();
+    }
+
+    @Provides
+    @Singleton
+    public DetailsPresenter providesDetailsPresenter() {
+        return new DetailsPresenter();
     }
 
     @Provides

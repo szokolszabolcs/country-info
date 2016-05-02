@@ -11,6 +11,7 @@ import hu.bme.aut.szabolcs.szokol.countryinfo.network.NetworkModule;
 import hu.bme.aut.szabolcs.szokol.countryinfo.repository.prod.RepositoryModule;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.UiModule;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.allcountries.AllCountriesFragment;
+import hu.bme.aut.szabolcs.szokol.countryinfo.ui.details.DetailsActivity;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.favourites.FavouritesFragment;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.login.LoginActivity;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.main.MainActivity;
@@ -35,5 +36,7 @@ public interface CountryInfoApplicationComponent {
     void inject(SearchFragment searchFragment);
 
     void inject(FavouritesFragment favouritesFragment);
+
+    void inject(DetailsActivity detailsActivity);
 
 }
