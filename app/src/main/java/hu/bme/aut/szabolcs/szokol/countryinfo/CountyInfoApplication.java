@@ -12,6 +12,10 @@ public class CountyInfoApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        injector = DaggerCountryInfoApplicationComponent.builder().uiModule(new UiModule(this)).build();
+        if (BuildConfig.MOCK) {
+            injector = DaggerMockCountryInfoApplicationComponent.builder().uiModule(new UiModule(this)).build();
+        } else {
+            injector = DaggerCountryInfoApplicationComponent.builder().uiModule(new UiModule(this)).build();
+        }
     }
 }

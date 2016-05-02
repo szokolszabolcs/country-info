@@ -18,6 +18,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+        mock {
+            applicationId = "hu.bme.aut.szabolcs.szokol.countryinfo.mock"
+            buildConfigField 'boolean', 'MOCK', 'true'
+        }
+        prod {
+            applicationId = "hu.bme.aut.szabolcs.szokol.countryinfo"
+            buildConfigField 'boolean', 'MOCK', 'false'
+        }
+    }
     lintOptions {
         lintConfig rootProject.file('gradle/lint.xml')
     }
