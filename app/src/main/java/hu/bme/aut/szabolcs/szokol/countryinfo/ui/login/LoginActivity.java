@@ -3,7 +3,7 @@ package hu.bme.aut.szabolcs.szokol.countryinfo.ui.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
+import android.support.v7.widget.AppCompatButton;
 import android.widget.EditText;
 
 import javax.inject.Inject;
@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity implements LoginScreen {
     @Bind(R.id.password)
     EditText password;
     @Bind(R.id.email_sign_in_button)
-    Button emailSignInButton;
+    AppCompatButton emailSignInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
