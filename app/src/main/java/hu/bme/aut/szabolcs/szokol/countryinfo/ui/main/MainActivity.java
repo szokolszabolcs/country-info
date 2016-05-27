@@ -23,7 +23,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import hu.bme.aut.szabolcs.szokol.countryinfo.CountyInfoApplication;
 import hu.bme.aut.szabolcs.szokol.countryinfo.R;
-import hu.bme.aut.szabolcs.szokol.countryinfo.ui.allcountries.AllCountriesFragment;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.favourites.FavouritesFragment;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.login.LoginActivity;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.search.SearchFragment;
@@ -132,12 +131,13 @@ public class MainActivity extends AppCompatActivity
             fm.beginTransaction().replace(R.id.container, fragment)
                     .addToBackStack(FavouritesFragment.FRAGMENT_FAVOURITES).commit();
         } else if (id == R.id.nav_all_countries) {
-            fragment = fm.findFragmentByTag(AllCountriesFragment.FRAGMENT_ALL_COUNTRIES);
-            if (fragment == null) {
-                fragment = AllCountriesFragment.newInstance();
-            }
-            fm.beginTransaction().replace(R.id.container, fragment)
-                    .addToBackStack(AllCountriesFragment.FRAGMENT_ALL_COUNTRIES).commit();
+            throw new UnsupportedOperationException("Try crash!");
+            //fragment = fm.findFragmentByTag(AllCountriesFragment.FRAGMENT_ALL_COUNTRIES);
+            //if (fragment == null) {
+            //    fragment = AllCountriesFragment.newInstance();
+            //}
+            //fm.beginTransaction().replace(R.id.container, fragment)
+            //        .addToBackStack(AllCountriesFragment.FRAGMENT_ALL_COUNTRIES).commit();
         } else if (id == R.id.nav_log_out) {
             mainPresenter.logout();
         }

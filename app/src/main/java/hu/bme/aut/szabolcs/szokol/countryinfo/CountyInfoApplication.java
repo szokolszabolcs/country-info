@@ -2,6 +2,7 @@ package hu.bme.aut.szabolcs.szokol.countryinfo;
 
 import android.app.Application;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
@@ -9,6 +10,7 @@ import javax.inject.Inject;
 
 import hu.bme.aut.szabolcs.szokol.countryinfo.repository.Repository;
 import hu.bme.aut.szabolcs.szokol.countryinfo.ui.UiModule;
+import io.fabric.sdk.android.Fabric;
 
 public class CountyInfoApplication extends Application {
 
@@ -22,6 +24,7 @@ public class CountyInfoApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
 
         if (BuildConfig.MOCK) {
             injector = DaggerMockCountryInfoApplicationComponent.builder().uiModule(new UiModule(this)).build();
