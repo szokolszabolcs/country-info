@@ -10,8 +10,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import javax.inject.Inject;
 
@@ -39,6 +43,9 @@ public class MainActivity extends AppCompatActivity
     @Bind(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
+    private CountyInfoApplication application;
+    private Tracker mTracker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +54,9 @@ public class MainActivity extends AppCompatActivity
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+
+        application = (CountyInfoApplication) getApplication();
+        mTracker = application.getDefaultTracker();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -73,6 +83,15 @@ public class MainActivity extends AppCompatActivity
     protected void onStart() {
         super.onStart();
         mainPresenter.attachScreen(this);
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
+        Log.i("Analytics", "Main sceeen loaded");
+        mTracker.setScreenName("Image~" + this.getClass().getSimpleName());
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override
@@ -122,6 +141,12 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_log_out) {
             mainPresenter.logout();
         }
+
+        Log.i("Analytics", "Tab changed");
+        mTracker.send(new HitBuilders.EventBuilder()
+                .setCategory("Action")
+                .setAction("Tab changed")
+                .build());
 
         if (drawerLayout != null) {
             drawerLayout.closeDrawer(GravityCompat.START);
