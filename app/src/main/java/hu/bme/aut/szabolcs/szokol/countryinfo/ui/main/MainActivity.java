@@ -55,6 +55,15 @@ public class MainActivity extends AppCompatActivity
         }
         toggle.syncState();
 
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = null;
+        fragment = fm.findFragmentByTag(SearchFragment.FRAGMENT_SEARCH);
+        if (fragment == null) {
+            fragment = SearchFragment.newInstance();
+        }
+        fm.beginTransaction().replace(R.id.container, fragment)
+                .addToBackStack(SearchFragment.FRAGMENT_SEARCH).commit();
+
         if (navView != null) {
             navView.setNavigationItemSelectedListener(this);
         }
